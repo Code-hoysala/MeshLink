@@ -8,9 +8,11 @@ void onDataReceived(uint8_t senderId, const uint8_t *data, uint8_t len) {
     Serial.print("Received from Node #");
     Serial.print(senderId);
     Serial.print(" | Payload: ");
-    for (int i = 0; i < len; i++) {
+
+    for (uint8_t i = 0; i < len; i++) {
         Serial.print((char)data[i]);
     }
+
     Serial.println();
 }
 
@@ -20,7 +22,7 @@ void setup() {
 
     if (!mesh.begin(onDataReceived)) {
         Serial.println("NRF24 initialization failed!");
-        while (1);
+        while (1) {}
     }
 
     Serial.println("UNO MeshLink active!");
